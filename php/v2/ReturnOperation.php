@@ -42,8 +42,8 @@ class TsReturnOperation extends ReferencesOperation
         $templateData = $this->prepareTemplateData($data, $creator, $expert, $client, $differences);
         $this->validateTemplateData($templateData);
 
-        $emailFrom = getResellerEmailFrom($resellerId);
-        $emails = getEmailsByPermit($resellerId, 'tsGoodsReturn');
+        $emailFrom = Helper::getResellerEmailFrom($resellerId);
+        $emails = Helper::getEmailsByPermit($resellerId, 'tsGoodsReturn');
 
         $this->notifyEmployees($emails, $emailFrom, $templateData, $resellerId, $result);
         $this->notifyClient($notificationType, $data, $emailFrom, $client, $templateData, $resellerId, $result);
@@ -53,6 +53,7 @@ class TsReturnOperation extends ReferencesOperation
      * Валидация данных запроса
      *
      * @param array $data
+     * @return void
      * @throws Exception
      */
     private function validateRequestData(array $data): void

@@ -8,7 +8,7 @@ namespace NW\WebService\References\Operations\Notification;
 class Contractor
 {
     const TYPE_CUSTOMER = 0;
-    public int $id;
+    private int $id;
     private int $type;
     private string $name;
     private string $email;
@@ -35,7 +35,7 @@ class Contractor
 
     public function getEmail(): string
     {
-        return $this->getEmail();
+        return $this->email;
     }
 }
 
@@ -73,21 +73,24 @@ abstract class ReferencesOperation
     }
 }
 
-function getResellerEmailFrom(): string
-{
-    return 'contractor@example.com';
-}
-
-function getEmailsByPermit($resellerId, $event): array
-{
-    // fakes the method
-    return ['someemeil@example.com', 'someemeil2@example.com'];
-}
-
 class NotificationEvents
 {
     const CHANGE_RETURN_STATUS = 'changeReturnStatus';
     const NEW_RETURN_STATUS    = 'newReturnStatus';
+}
+
+class Helper
+{
+    public static function getResellerEmailFrom(): string
+    {
+        return 'contractor@example.com';
+    }
+
+    public static function getEmailsByPermit(int $resellerId, string $event): array
+    {
+        // fakes the method
+        return ['someemeil@example.com', 'someemeil2@example.com'];
+    }
 }
 
 class NotificationManager
